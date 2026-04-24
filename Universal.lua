@@ -30,6 +30,38 @@ ScriptTab:Button({
     end,
 })
 
+-- Input untuk Username Copy Avatar
+local targetUser = ""
+ScriptTab:Input({
+    Title = "Target Username (Copy Avatar)",
+    Placeholder = "Masukkan username...",
+    Callback = function(text)
+        targetUser = text
+    end,
+})
+
+ScriptTab:Button({
+    Title = "Copy Avatar FE",
+    Color = Color3.fromHex("#a230ff"),
+    Callback = function()
+        if targetUser ~= "" then
+            local Players = game:GetService("Players")
+            local targetPlayer = Players:FindFirstChild(targetUser)
+            
+            if targetPlayer and targetPlayer.Character then
+                local lp = Players.LocalPlayer
+                local humanoid = lp.Character and lp.Character:FindFirstChild("Humanoid")
+                if humanoid then
+                    humanoid:ApplyDescription(Players:GetHumanoidDescriptionFromUserId(targetPlayer.UserId))
+                    WindUI:Notify({Title = "Venzz Hub", Content = "Avatar " .. targetUser .. " berhasil dicopy!"})
+                end
+            else
+                WindUI:Notify({Title = "Venzz Hub", Content = "Player tidak ditemukan!"})
+            end
+        end
+    end,
+})
+
 -- TAB: LIST GAMES SCRIPT
 local ListTab = Window:Tab({ Title = "List Games Script" })
 

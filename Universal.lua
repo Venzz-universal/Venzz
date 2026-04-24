@@ -1,52 +1,58 @@
-local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
+-- Venzz Hub Full Clean (No Icons)
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua" .. "?v=" .. tick()))()
 
 local Window = WindUI:CreateWindow({
-    Title = "Venzz Hub | Universal",
+    Title = "Venzz Hub",
     Folder = "VenzzHub",
-    Icon = "solar:folder-2-bold-duotone",
     HideSearchBar = false,
     OpenButton = { Title = "Venzz Hub", Enabled = true, Draggable = true, Scale = 0.5 },
 })
 
--- TAB: UNIVERSAL (Fitur yang jalan di semua game)
-local UniversalTab = Window:Tab({ Title = "all script", Icon = "solar:home-2-bold", Border = true })
-UniversalTab:Section({ Title = "Global Features" })
-UniversalTab:Button({
+-- TAB: HOME
+local HomeTab = Window:Tab({ Title = "Home" })
+HomeTab:Button({
     Title = "Copy Discord Link",
     Callback = function()
         setclipboard("https://discord.gg/Vn2Zg7ZvV")
-        WindUI:Notify({Title = "Venzz Hub", Content = "Link Discord dicopy!"})
+        WindUI:Notify({Title = "Venzz Hub", Content = "Discord link copied!"})
     end,
 })
 
--- TAB: GAME SPECIFIC (Ini tempat lo naruh script per game)
-local GameTab = Window:Tab({ Title = "games script", Icon = "solar:gamepad-bold", Border = true })
-GameTab:Section({ Title = "Auto Detect Game Script" })
+-- TAB: SCRIPT HUB
+local ScriptTab = Window:Tab({ Title = "Script Hub" })
 
-GameTab:Button({
-    Title = "Execute Script For This Game",
+ScriptTab:Button({
+    Title = "FPS Booster",
+    Color = Color3.fromHex("#ffcc00"),
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/WiFxsh46/raw"))()
+        WindUI:Notify({Title = "Venzz Hub", Content = "FPS Booster Executed!"})
+    end,
+})
+
+-- TAB: LIST GAMES SCRIPT
+local ListTab = Window:Tab({ Title = "List Games Script" })
+
+ListTab:Button({
+    Title = "MM2 Script",
     Color = Color3.fromHex("#a2ff30"),
     Callback = function()
-        local CurrentID = game.PlaceId
-        
-        -- DI BAWAH INI TEMPAT LO TARUH PLACE ID DAN LINK-NYA
-        if CurrentID == 142823291 then -- GANTI ID MM2
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/script-9209/roblox/refs/heads/main/mm2-keyless-auto"))()
-        
-        elseif CurrentID == 93978595733734 then -- GANTI ID GAME LAIN
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/numerouno2/eugunewupremium/refs/heads/main/main.lua"))()
-            
-        else
-            WindUI:Notify({
-                Title = "Venzz Hub", 
-                Content = "Script tidak ditemukan untuk PlaceID: " .. CurrentID
-            })
-        end
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/script-9209/roblox/refs/heads/main/mm2-keyless-auto"))()
+        WindUI:Notify({Title = "Venzz Hub", Content = "MM2 Script Executed!"})
+    end,
+})
+
+ListTab:Button({
+    Title = "Violence District Script",
+    Color = Color3.fromHex("#ff30a2"),
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/numerouno2/eugunewupremium/refs/heads/main/main.lua"))()
+        WindUI:Notify({Title = "Venzz Hub", Content = "VD Script Executed!"})
     end,
 })
 
 -- TAB: SETTINGS
-local SettingsTab = Window:Tab({ Title = "Settings", Icon = "solar:settings-bold", Border = true })
+local SettingsTab = Window:Tab({ Title = "Settings" })
 SettingsTab:Button({
     Title = "Destroy UI",
     Color = Color3.fromHex("#ff4830"),
